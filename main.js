@@ -43,7 +43,6 @@
     });
     schemaUrlInput.value = url;
     specs.specs = [
-      'https://scf.baobeihuijia.com/test/uic/swagger/doc.json',
       'https://api.apis.guru/v2/specs/instagram.com/1.0.0/swagger.yaml',
       'https://api.apis.guru/v2/specs/googleapis.com/calendar/v3/swagger.yaml',
       'https://api.apis.guru/v2/specs/data2crm.com/1/swagger.yaml',
