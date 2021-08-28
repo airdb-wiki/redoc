@@ -8,8 +8,8 @@ on:
       - main
 
 jobs:
-  push_to_registry:
-    name: Pull Docker image to GitHub Packages
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Use Node.js ${{ matrix.node-version }}
