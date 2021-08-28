@@ -26,6 +26,7 @@ jobs:
 
       - name: gh-pages
         run: |
+          echo 1
           pwd
           #    #sed -i 's@/static/@/xadmin/static/@g' index.html
           #    echo noah.airdb.io > CNAME
