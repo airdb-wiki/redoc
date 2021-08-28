@@ -21,10 +21,12 @@ jobs:
           git clone https://github.com/Redocly/redoc
           cd redoc
           echo npm install
+          npm run build:demo
+          ls -l demo/dist
 
-          #- name: gh-pages
-          #  run: |
-          #    cd noahv
+      - name: gh-pages
+        run: |
+          pwd
           #    #sed -i 's@/static/@/xadmin/static/@g' index.html
           #    echo noah.airdb.io > CNAME
           #    git init
