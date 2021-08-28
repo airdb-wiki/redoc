@@ -19,8 +19,8 @@ jobs:
       - name: Check out the repo and build demo.
         run: |
           git clone https://github.com/Redocly/redoc
-          cd redoc && \
-          npm install
+          cd redoc
+          echo npm install
 
           #- name: gh-pages
           #  run: |
