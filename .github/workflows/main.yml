@@ -15,24 +15,26 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: '16'
+          node-version: "16"
       - name: Check out the repo and build demo.
         run: |
           git clone https://github.com/Redocly/redoc
           cd redoc
+          sed -i '/port: 9090/i\   host: "0.0.0.0",' demo/webpack.config.ts
+          sed -i "/const demos = /a\   { label: 'UIC', value: '${DOMAIN}/test/uic/swagger/doc.json'}," demo/index.tsx
+          sed -i "/const demos = /a\   { label: 'Noah', value: '${DOMAIN}/test/noah/swagger/doc.json'}," demo/index.tsx
+          sed -i "/const demos = /a\   { label: 'airdb', value: '${DOMAIN}/test/noah/swagger/doc.json'}," demo/index.tsx
+          sed -i "/const demos = /a\   { label: 'Default', value: '${DOMAIN}/test/default/swagger/doc.json'}," demo/index.tsx
+          sed -i "/const demos = /a\   { label: 'mp-bbhj', value: '${DOMAIN}/test/mina/docs/swagger.json'}," demo/index.tsx
+          sed -i "/const demos = /a\   { label: 'Dev', value: 'http://airdb.me/docs/swagger.yaml'}," demo/index.tsx
           npm install
           npm run build:demo
           ls -l demo/dist
 
-      - name: gh-pages
-        run: |
-          echo 1
-          pwd
-          #    #sed -i 's@/static/@/xadmin/static/@g' index.html
-          #    echo noah.airdb.io > CNAME
-          #    git init
-          #    git config user.name "airdb-bot"
-          #    git config user.email "airdb-bot@airdb.com"
-          #    git add -A
-          #    git commit -m "Auto Update by actions"
-          #    git push --force "https://${{ secrets.GithubBotToken }}@github.com/${GITHUB_REPOSITORY}" master:gh-pages
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/dev'
+        with:
+          github_token: ${{ secrets.GITHUBBOTTOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./demo/dist
