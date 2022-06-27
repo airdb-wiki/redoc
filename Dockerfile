@@ -1,10 +1,12 @@
-FROM node
+FROM node:16.15
 
 MAINTAINER https://github.com/airdb
 
 ENV DOMAIN "https://service-iw6drlfr-1251018873.sh.apigw.tencentcs.com"
 WORKDIR /srv
 
+RUN apt-get update && \
+	apt-get install -y git
 RUN git clone https://github.com/Redocly/redoc /srv/redoc
 RUN cd /srv/redoc 
 #&& \ npm install 

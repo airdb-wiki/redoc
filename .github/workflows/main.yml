@@ -15,7 +15,7 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
-          node-version: "18"
+          node-version: "16.15.1"
       - name: Check out the repo and build demo.
         run: |
           git clone https://github.com/Redocly/redoc
@@ -27,13 +27,13 @@ jobs:
           sed -i "/const demos = /a\   { label: 'Default', value: '${DOMAIN}/test/default/swagger/doc.json'}," demo/index.tsx
           sed -i "/const demos = /a\   { label: 'mp-bbhj', value: '${DOMAIN}/test/mina/docs/swagger.json'}," demo/index.tsx
           sed -i "/const demos = /a\   { label: 'Dev', value: 'http://airdb.me/docs/swagger.yaml'}," demo/index.tsx
-          yarn install
-          yarn run build:demo
+          npm install
+          npm run build:demo
           ls -l demo/dist
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/dev'
+        if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUBBOTTOKEN }}
           publish_branch: gh-pages
