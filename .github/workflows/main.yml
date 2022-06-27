@@ -20,6 +20,7 @@ jobs:
         run: |
           git clone https://github.com/Redocly/redoc
           cd redoc
+          export DOMAIN="https://service-iw6drlfr-1251018873.sh.apigw.tencentcs.com"
           sed -i '/port: 9090/i\   host: "0.0.0.0",' demo/webpack.config.ts
           sed -i "/const demos = /a\   { label: 'UIC', value: '${DOMAIN}/test/uic/swagger/doc.json'}," demo/index.tsx
           sed -i "/const demos = /a\   { label: 'Noah', value: '${DOMAIN}/test/noah/swagger/doc.json'}," demo/index.tsx
