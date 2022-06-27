@@ -37,4 +37,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUBBOTTOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./demo/dist
+          publish_dir: ./redoc/demo/dist
