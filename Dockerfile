@@ -7,7 +7,7 @@ WORKDIR /srv
 
 RUN apt-get update && \
 	apt-get install -y git
-RUN git clone https://github.com/Redocly/redoc /srv/redoc
+RUN git clone -b v2.0.0-rc.74 https://github.com/Redocly/redoc /srv/redoc
 RUN cd /srv/redoc 
 #&& \ npm install 
 
