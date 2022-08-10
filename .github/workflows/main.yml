@@ -28,8 +28,9 @@ jobs:
           sed -i "/const demos = /a\   { label: 'Default', value: '${DOMAIN}/test/default/swagger/doc.json'}," demo/index.tsx
           sed -i "/const demos = /a\   { label: 'mp-bbhj', value: '${DOMAIN}/test/mina/docs/swagger.json'}," demo/index.tsx
           sed -i "/const demos = /a\   { label: 'Dev', value: 'http://airdb.me/docs/swagger.yaml'}," demo/index.tsx
-          npm install
-          npm run build:demo
+          yarn add update-notifier
+          yarn install
+          yarn run build:demo
           ls -l demo/dist
 
       - name: Deploy
